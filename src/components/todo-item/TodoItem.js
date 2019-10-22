@@ -4,7 +4,7 @@ class TodoItem extends React.Component {
     render() {
         return (
             <div>
-                <input type='checkbox' checked={this.props.checked}/>
+                <input type='checkbox' />
                 <span>{this.props.title}</span>
             </div>
         )
