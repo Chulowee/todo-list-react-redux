@@ -7,8 +7,8 @@ class TodoWrapper extends React.Component {
             <div>
                 <h1>TODO LIST</h1>
                 <div>
-                    <TodoItem/>
-                    <TodoItem/>
+                    <TodoItem title={'eat food'} checked={true}/>
+                    <TodoItem title={'burp'} checked={false}/>
                 </div>
             </div>
         )
