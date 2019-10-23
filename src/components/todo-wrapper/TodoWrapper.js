@@ -1,6 +1,7 @@
 import React from "react";
 import TodoItem from "../todo-item/TodoItem";
 import TodoInput from "../todo-input/TodoInput";
+import {connect} from "react-redux";
 
 class TodoWrapper extends React.Component {
     render() {
@@ -9,12 +10,20 @@ class TodoWrapper extends React.Component {
                 <h1>TODO LIST</h1>
                 <TodoInput/>
                 <div>
-                    <TodoItem title={'a'} checked={true}/>
-                    <TodoItem title={'burp'} checked={false}/>
+                    {this.props.todoList.map(todo => (
+                        <TodoItem
+                            id={todo.id}
+                            title={todo.title}
+                        />
+                    ))}
                 </div>
             </div>
         )
     }
 }
 
-export default TodoWrapper;
+const mapStateToProps = state => ({
+    todoList: state.todoReducer.todoList
+});
+
+export default connect(mapStateToProps)(TodoWrapper);

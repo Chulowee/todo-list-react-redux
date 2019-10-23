@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {addTodo} from "../../actions";
 
 class TodoInput extends React.Component {
     constructor(props) {
@@ -13,20 +15,26 @@ class TodoInput extends React.Component {
         this.setState({inputValue: event.target.value})
     };
 
+    onClickAddButton = () => {
+        this.props.actions.addTodo(this.state.inputValue);
+    };
+
     render() {
         return (
             <div>
                 <input type='text' onChange={this.onChangeInput}/>
-                <button>Add Todo</button>
+                <button onClick={this.onClickAddButton}>Add Todo</button>
             </div>
         )
     }
 }
 
-// export default TodoInput;
-
 const mapStateToProps = state => ({
     title: state.inputValue
 });
 
-export default connect(mapStateToProps)(TodoInput);
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({addTodo}, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoInput);

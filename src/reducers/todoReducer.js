@@ -1,18 +1,17 @@
+import TodoItem from "../components/todo-item/TodoItem";
+import React from "react";
+
 const initialState = {
-    title: ''
+    todoList: []
 };
 
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_TODO':
-            return [
+            return {
                 ...state,
-                {
-                    id: action.id,
-                    title: action.title,
-                    completed: false
-                }
-            ];
+                todoList: [...state.todoList, {title: action.title, id: action.id}]
+            };
         default:
             return state;
     }
